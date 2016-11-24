@@ -64,13 +64,13 @@ def showCompany_energyData(energyData_id):
 
 @app.route('/energyData/', methods = ['POST'])
 def create_energyData():
-	if not request.json or not 'Customer' in request.json:
+	if not request.json or not 'unit' in request.json:
 		abort(400)
 	energyData = {
+		'timestamp': request.json['timestamp'],
 		'unit': request.json['unit'],
 		'name': request.json['name'],
 		'value': request.json['value'],
-		'timestamp': request.json['timestamp'],
 	}
 	Datas = db['SmartHomeDB'].insert(energyData)
 	
